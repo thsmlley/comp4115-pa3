@@ -1,0 +1,97 @@
+COMP4115
+Spring 2015
+Programming Assignment 3
+Assigned: 31 March, 2015
+Deadline: 7 April, 2015
+
+This assignment is due on April 7, before class begins.
+
+You will submit it via github as usual. Since this is the third github
+assignment and you're all comfortable with the tool, we won't accept
+ANY late submissions. If you anticipate any questions or issues with
+github itself, let me or Muktadir know right before the due date.
+
+Note that user-defined functions in mySQL can be tricky to get working
+(just like setting up the program for the first assignment!). Even for
+simple ones like the first two below, it will take you a little trial
+and error to get it working, so allow time for experimentation.
+
+
+###########################################################
+#
+# PART ONE: 10 points
+#
+##########################################################
+
+Create a simple mySQL user-defined function using only the SQL command line interface.
+
+Function name: exp
+Parameters: two integers
+Returns: an int, the result of multiplying the two parameters together
+
+
+Because you're doing this one on the command line, all you'll need to
+submit is a plaintext file showing (1) the sql commands you executed
+to create the function, (2) the sql command to invoke the function,
+and (3) the result you saw.
+
+For example, if you were to submit a function like the "hello world" we did in class, you would submit a text file with the following lines:
+
+mysql> create function hw( ) returns varchar(20)  
+mysql> return( 'hello world!' );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> select hw();
++--------------+
+| hw()         |
++--------------+
+| hello world! |
++--------------+
+1 row in set (0.01 sec)
+
+
+###########################################################
+#
+# PART TWO: 15 points
+#
+##########################################################
+
+
+Write a SQL function (a stored function this time, saved in a .sql
+file) that calcualtes the area of a circle, given its radius.
+
+Your function should declare a variable to save the area in before it
+does the actual computation.
+
+Function input: double, the radius
+Return value: double, the circle's area
+
+
+Submission:
+
+* Submit to github your .sql file containing your function
+
+* In your README file, include at least 4 inputs you've tested in calling your function, and the results you saw.
+
+###########################################################
+#
+# PART THREE: 75 points
+#
+##########################################################
+
+For the rest of this assignment, you'll write functions to read and
+maniuplate data from the mySQL employees database (remember it? You
+can get it here: https://dev.mysql.com/doc/employee/en/ )
+
+* Write a function that returns the first and last name of all
+  employees that match a given argument. For example, if I invoke the
+  function with the argument "Bouloucos", it should return Chenye
+  Bouloucos, Kristinn Bouloucos, Otmar Bouloucos, etc. (there are
+  nearly 200 of them).
+
+* Write a function that returns the average salary of all employees
+  who work in a given department (with department specified by its ID
+  number, in the argument to the function).
+
+* Write a function that takes one argument ('M' or 'F') and returns
+  how many employees exist of the given gender.
