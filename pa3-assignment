@@ -59,31 +59,37 @@ mysql> select hw();
 
 ###########################################################
 #
-# PART TWO: 20 points
+# PART TWO: 30 points
 #
 ##########################################################
 
 
-Write a SQL user-defined function that calculates the area of a
-circle, given its radius.
+Write two SQL user-defined functions: one that calculates the area of
+a circle given its radius, and one that translates a 'second' value
+into hours, minutes and seconds.
 
 In SQL, user-defined functions are written in C/C++. I'm assuming you
 have some familiarity with at least one of these languages, and that
 you have a C/C++ compiler on your machine. If I'm wrong about either
 assumption, please post a question on piazza or swing by my office or
-see Muktadir anytime -- we can help you get set-up.
+check in with Muktadir -- we can help you get set-up.
 
+Function 1: area
 Function input: double, the radius
 Return value: double, the circle's area
 
-Here's how you get it to work:
+Funciton 2: time
+Function input: integer, some number of seconds
+Return value: string, a human-readable string of HH:MM:SS
 
-* Write a small C/C++ program to implement the function as
+Here's how you get UDFs to work
+
+* Write a small C/C++ program to implement each function as
   described. For the rest of this instruction, I'll assume your file
-  is named radius.cpp.
+  is named area.cpp.
 
 * Compile your program and output the accompanying *.so file, like this: 
-gcc -shared -o radius.so radius.cpp
+gcc -shared -o area.so area.cpp
 
 * Move the radius.so file to the mysql lib file with other stored
   procedures. Usually this would be in /usr/local/mysql/lib/plugin.
@@ -95,13 +101,15 @@ gcc -shared -o radius.so radius.cpp
 
 Submission:
 
-* Submit to github your .cpp file containing your function
+* Submit to github your .cpp files containing one function apiece.
 
-* In your README file, include at least 4 inputs you've tested in calling your function, and the results you saw.
+* In your README file, include at least 4 inputs you've tested in
+  calling each function, and the results you saw.
+
 
 ###########################################################
 #
-# PART THREE: 70 points
+# PART FOUR: 60 points
 #
 ##########################################################
 
@@ -109,15 +117,26 @@ For the rest of this assignment, you'll write SQL stored procedures to read and
 maniuplate data from the mySQL employees database (remember it? You
 can get it here: https://dev.mysql.com/doc/employee/en/ )
 
-* Write a function that returns the first and last name of all
+Unlike UDFs, stored procedures are written as mySQL statements, and
+you can save them to a file just like any series of sql statements.
+
+* Write a procedure that returns the first and last name of all
   employees that match a given argument. For example, if I invoke the
   function with the argument "Bouloucos", it should return Chenye
   Bouloucos, Kristinn Bouloucos, Otmar Bouloucos, etc. (there are
   nearly 200 of them).
 
-* Write a function that returns the average salary of all employees
+* Write a procedure that returns the average salary of all employees
   who work in a given department (with department specified by its ID
   number, in the argument to the function).
 
-* Write a function that takes one argument ('M' or 'F') and returns
+* Write a procedure that takes one argument ('M' or 'F') and returns
   how many employees exist of the given gender.
+
+Submission:
+
+* Submit a file with your stored procedures (and nothing else in the file)
+
+* In your README, include several examples of invoking each
+  function. (You need not include every result in your readme file,
+  especially for the first part! Just enough to demo that you saw it working.)
