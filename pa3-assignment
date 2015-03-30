@@ -11,10 +11,17 @@ assignment and you're all comfortable with the tool, we won't accept
 ANY late submissions. If you anticipate any questions or issues with
 github itself, let me or Muktadir know right before the due date.
 
-Note that user-defined functions in mySQL can be tricky to get working
-(just like setting up the program for the first assignment!). Even for
-simple ones like the first two below, it will take you a little trial
-and error to get it working, so allow time for experimentation.
+Note that stored procedures and user-defined functions in mySQL can be
+tricky to get working (just like setting up the program for the first
+assignment!). Even for simple ones like the first two below, it will
+take you a little trial and error to get it working, so allow time for
+experimentation.
+
+We'll cover more in the next class, but that won't be until thursday
+4/2/15. In the meantime, here's a quick summary of some useful
+information for this assignment:
+
+
 
 
 ###########################################################
@@ -23,7 +30,7 @@ and error to get it working, so allow time for experimentation.
 #
 ##########################################################
 
-Create a simple mySQL user-defined function using only the SQL command line interface.
+Create a simple mySQL procedure using only the SQL command line interface.
 
 Function name: exp
 Parameters: two integers
@@ -52,34 +59,53 @@ mysql> select hw();
 
 ###########################################################
 #
-# PART TWO: 15 points
+# PART TWO: 20 points
 #
 ##########################################################
 
 
-Write a SQL function (a stored function this time, saved in a .sql
-file) that calcualtes the area of a circle, given its radius.
+Write a SQL user-defined function that calculates the area of a
+circle, given its radius.
 
-Your function should declare a variable to save the area in before it
-does the actual computation.
+In SQL, user-defined functions are written in C/C++. I'm assuming you
+have some familiarity with at least one of these languages, and that
+you have a C/C++ compiler on your machine. If I'm wrong about either
+assumption, please post a question on piazza or swing by my office or
+see Muktadir anytime -- we can help you get set-up.
 
 Function input: double, the radius
 Return value: double, the circle's area
 
+Here's how you get it to work:
+
+* Write a small C/C++ program to implement the function as
+  described. For the rest of this instruction, I'll assume your file
+  is named radius.cpp.
+
+* Compile your program and output the accompanying *.so file, like this: 
+gcc -shared -o radius.so radius.cpp
+
+* Move the radius.so file to the mysql lib file with other stored
+  procedures. Usually this would be in /usr/local/mysql/lib/plugin.
+  You can always verify by firing up mysql and running the command
+  show variables like 'mysql> plugin_dir';
+
+* Now fire up mysql and you should be able to invoke the function with
+  a select statement.
 
 Submission:
 
-* Submit to github your .sql file containing your function
+* Submit to github your .cpp file containing your function
 
 * In your README file, include at least 4 inputs you've tested in calling your function, and the results you saw.
 
 ###########################################################
 #
-# PART THREE: 75 points
+# PART THREE: 70 points
 #
 ##########################################################
 
-For the rest of this assignment, you'll write functions to read and
+For the rest of this assignment, you'll write SQL stored procedures to read and
 maniuplate data from the mySQL employees database (remember it? You
 can get it here: https://dev.mysql.com/doc/employee/en/ )
 
