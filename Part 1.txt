@@ -1,0 +1,10 @@
+mysql> create function muliti(a int, b int) returns int return (a * b);
+Query OK, 0 rows affected (0.62 sec)
+
+mysql> select muliti(2,3);
++-------------+
+| muliti(2,3) |
++-------------+
+|           6 |
++-------------+
+1 row in set (0.23 sec)
